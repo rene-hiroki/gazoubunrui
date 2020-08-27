@@ -17,7 +17,7 @@ from keras.callbacks import ModelCheckpoint
 from keras.optimizers import Adam
 from keras.utils import np_utils
 
-FileNames = ["kobe_bryant", "russell_westbrook", "stephen_curry"]
+FileNames = ["kobe_bryant.npy", "russell_westbrook.npy", "stephen_curry.npy"]
 ClassNames = ["kobe", "westbrook", "curry"]
 hw = {"height":32, "width":32}        # リストではなく辞書型 中かっこで囲む
 
