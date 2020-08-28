@@ -149,3 +149,18 @@ def TestProcess(imgname):
     pred = model.predict(np.array([TEST]), batch_size=1, verbose=0)
     print(">> 計算結果↓\n" + str(pred))
     print(">> この画像は「" + textlist[np.argmax(pred)].replace(",", "") + "」です。")
+
+
+def ImageTestProcess(image_file):
+    modelname_text = open("model.json").read()
+    json_strings = modelname_text.split('##########')
+    textlist = json_strings[1].replace("[", "").replace("]", "").replace("\'", "").split()
+    model = model_from_json(json_strings[0])
+    model.load_weights("last.hdf5")  # best.hdf5 で損失最小のパラメータを使用
+    # img = load_img(image_file, target_size=(hw["height"], hw["width"]))    
+    img = image_file
+    TEST = img_to_array(img) / 255
+
+    pred = model.predict(np.array([TEST]), batch_size=1, verbose=0)
+    print(">> 計算結果↓\n" + str(pred))
+    print(">> この画像は「" + textlist[np.argmax(pred)].replace(",", "") + "」です。")
